@@ -64,6 +64,7 @@
             LeftArrowBtn.TabIndex = 4;
             LeftArrowBtn.Text = "<<";
             LeftArrowBtn.UseVisualStyleBackColor = true;
+            LeftArrowBtn.Click += LeftArrowBtn_Click;
             // 
             // RightArrowBtn
             // 
@@ -75,6 +76,7 @@
             RightArrowBtn.TabIndex = 5;
             RightArrowBtn.Text = ">>";
             RightArrowBtn.UseVisualStyleBackColor = true;
+            RightArrowBtn.Click += RightArrowBtn_Click;
             // 
             // BackBtn
             // 
