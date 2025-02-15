@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.IO;
 
 namespace FileExplorerApp
@@ -18,10 +19,6 @@ namespace FileExplorerApp
         public Form1()
         {
             InitializeComponent();
-
-            LeftListView.ItemActivate += listView_ItemActivate;
-            RightListView.ItemActivate += listView_ItemActivate;
-
         }
 
 
@@ -33,67 +30,6 @@ namespace FileExplorerApp
 
             PopulateDrives(LeftListView);
             PopulateDrives(RightListView);
-        }
-
-        private void RightListView_ItemActivate(object sender, EventArgs e)
-        {
-            if (RightListView.SelectedItems[0].Text == ".")
-            {
-                PopulateDrives(RightListView);
-                rightTextBox.Text = "";
-            }
-
-            if (RightListView.SelectedItems.Count > 0)
-            {
-                string selectedPath;
-                if (RightListView.SelectedItems[0].Text == "..")
-                    selectedPath = Directory.GetParent(currentPathRight).FullName;
-                else
-                    selectedPath = Path.Combine(currentPathRight, RightListView.SelectedItems[0].Text);
-
-                selectedPath = Path.Combine(currentPathRight, RightListView.SelectedItems[0].Text);
-
-                if (Directory.Exists(selectedPath))
-                {
-                    PopulateFolderContents(RightListView, selectedPath);
-                    currentPathRight = selectedPath;
-                    rightTextBox.Text = currentPathRight;
-                }
-                else if (File.Exists(selectedPath))
-                {
-                    MessageBox.Show("This is a file and cannot be opened.");
-                }
-            }
-        }
-
-        private void LeftListView_ItemActivate_1(object sender, EventArgs e)
-        {
-            if (LeftListView.SelectedItems[0].Text == ".")
-            {
-                PopulateDrives(LeftListView);
-                leftTextBox.Text = "";
-            }
-
-            if (LeftListView.SelectedItems.Count > 0)
-            {
-                string selectedPath;
-                if (LeftListView.SelectedItems[0].Text == "..")
-                    selectedPath = Directory.GetParent(currentPathLeft).FullName;
-                else
-                    selectedPath = Path.Combine(currentPathLeft, LeftListView.SelectedItems[0].Text);
-
-                if (Directory.Exists(selectedPath))
-                {
-                    // Open the folder
-                    PopulateFolderContents(LeftListView, selectedPath);
-                    currentPathLeft = selectedPath; // Update the current path for the left pane
-                    leftTextBox.Text = currentPathLeft; // Update textbox
-                }
-                else if (File.Exists(selectedPath))
-                {
-                    MessageBox.Show("This is a file and cannot be opened.");
-                }
-            }
         }
 
         private void listView_ItemActivate(object sender, EventArgs e)
@@ -110,6 +46,49 @@ namespace FileExplorerApp
                 lastAccessedPath = currentPathRight;
                 lastAccessedListView = RightListView;
                 lastAccessedTextBox = rightTextBox;
+            }
+
+            if (listView.SelectedItems.Count > 0)
+            {
+                if (listView.SelectedItems[0].Text == ".")
+                {
+                    PopulateDrives(listView);
+                    lastAccessedTextBox.Text = "";
+                    return;
+                }
+
+                string selectedItemPath;
+
+                if (lastAccessedListView.SelectedItems[0].Text == "..")
+                    selectedItemPath = Directory.GetParent(lastAccessedPath).FullName;
+                else
+                    selectedItemPath = listView.SelectedItems[0].Tag.ToString();
+
+                if (Directory.Exists(selectedItemPath))
+                {
+                    PopulateFolderContents(listView, selectedItemPath);
+
+                    if (listView == LeftListView) currentPathLeft = selectedItemPath;
+                    if (listView == RightListView) currentPathRight = selectedItemPath;
+
+                    lastAccessedTextBox.Text = selectedItemPath;
+                }
+                else if (File.Exists(selectedItemPath))
+                {
+                    try
+                    {
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = selectedItemPath,
+                            UseShellExecute = true
+                        });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An error occurred while trying to open the file: {ex.Message}",
+                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
@@ -305,7 +284,7 @@ namespace FileExplorerApp
             {
                 ListViewItem item = new ListViewItem(drive.Name);
                 item.SubItems.Add("Drive");
-                item.SubItems.Add((drive.TotalSize / (1024 * 1024 * 1024)).ToString());
+                item.SubItems.Add((drive.TotalSize / (1024 * 1024 * 1024)).ToString() + " GB");
                 item.Tag = drive.Name;
                 listView.Items.Add(item);
             }

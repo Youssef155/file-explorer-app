@@ -119,7 +119,7 @@
             RightListView.Size = new Size(593, 435);
             RightListView.TabIndex = 9;
             RightListView.UseCompatibleStateImageBehavior = false;
-            RightListView.ItemActivate += RightListView_ItemActivate;
+            RightListView.ItemActivate += listView_ItemActivate;
             // 
             // LeftListView
             // 
@@ -129,7 +129,7 @@
             LeftListView.Size = new Size(614, 435);
             LeftListView.TabIndex = 10;
             LeftListView.UseCompatibleStateImageBehavior = false;
-            LeftListView.ItemActivate += LeftListView_ItemActivate_1;
+            LeftListView.ItemActivate += listView_ItemActivate;
             // 
             // Form1
             // 
