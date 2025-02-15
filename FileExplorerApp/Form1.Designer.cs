@@ -68,7 +68,7 @@
             LeftArrowBtn.BackColor = Color.FromArgb(163, 151, 12);
             LeftArrowBtn.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LeftArrowBtn.ForeColor = SystemColors.ButtonFace;
-            LeftArrowBtn.Location = new Point(730, 271);
+            LeftArrowBtn.Location = new Point(730, 231);
             LeftArrowBtn.Name = "LeftArrowBtn";
             LeftArrowBtn.Size = new Size(58, 48);
             LeftArrowBtn.TabIndex = 4;
@@ -82,7 +82,7 @@
             RightArrowBtn.BackColor = Color.FromArgb(163, 151, 12);
             RightArrowBtn.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             RightArrowBtn.ForeColor = SystemColors.ButtonFace;
-            RightArrowBtn.Location = new Point(730, 352);
+            RightArrowBtn.Location = new Point(730, 312);
             RightArrowBtn.Name = "RightArrowBtn";
             RightArrowBtn.Size = new Size(58, 48);
             RightArrowBtn.TabIndex = 5;
@@ -96,7 +96,7 @@
             BackBtn.BackColor = Color.FromArgb(163, 151, 12);
             BackBtn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             BackBtn.ForeColor = SystemColors.ButtonFace;
-            BackBtn.Location = new Point(1222, 540);
+            BackBtn.Location = new Point(1146, 370);
             BackBtn.Name = "BackBtn";
             BackBtn.Size = new Size(130, 45);
             BackBtn.TabIndex = 6;
@@ -110,7 +110,7 @@
             CopyBtn.BackColor = Color.FromArgb(163, 151, 12);
             CopyBtn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             CopyBtn.ForeColor = SystemColors.ButtonFace;
-            CopyBtn.Location = new Point(178, 540);
+            CopyBtn.Location = new Point(197, 370);
             CopyBtn.Name = "CopyBtn";
             CopyBtn.Size = new Size(130, 45);
             CopyBtn.TabIndex = 7;
@@ -124,7 +124,7 @@
             DeleteBtn.BackColor = Color.FromArgb(163, 151, 12);
             DeleteBtn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
             DeleteBtn.ForeColor = SystemColors.ButtonFace;
-            DeleteBtn.Location = new Point(713, 540);
+            DeleteBtn.Location = new Point(694, 370);
             DeleteBtn.Name = "DeleteBtn";
             DeleteBtn.Size = new Size(130, 45);
             DeleteBtn.TabIndex = 8;
@@ -141,7 +141,7 @@
             RightListView.ForeColor = Color.White;
             RightListView.Location = new Point(815, 86);
             RightListView.Name = "RightListView";
-            RightListView.Size = new Size(593, 431);
+            RightListView.Size = new Size(593, 238);
             RightListView.TabIndex = 9;
             RightListView.UseCompatibleStateImageBehavior = false;
             RightListView.ItemActivate += listView_ItemActivate;
@@ -155,7 +155,7 @@
             LeftListView.ForeColor = Color.White;
             LeftListView.Location = new Point(94, 97);
             LeftListView.Name = "LeftListView";
-            LeftListView.Size = new Size(614, 420);
+            LeftListView.Size = new Size(614, 227);
             LeftListView.TabIndex = 10;
             LeftListView.UseCompatibleStateImageBehavior = false;
             LeftListView.ItemActivate += listView_ItemActivate;
@@ -165,7 +165,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(13, 0, 64);
-            ClientSize = new Size(1505, 597);
+            ClientSize = new Size(1505, 517);
             Controls.Add(LeftListView);
             Controls.Add(RightListView);
             Controls.Add(DeleteBtn);
