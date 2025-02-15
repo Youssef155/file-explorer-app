@@ -54,8 +54,8 @@ namespace FileExplorerApp
             listView.Items.Clear();
 
             // Add "." and ".." for navigation
-            listView.Items.Add(new ListViewItem(".") { SubItems = { "", "" }, Tag = path });
-            listView.Items.Add(new ListViewItem("..") { SubItems = { "", "" }, Tag = Directory.GetParent(path)?.FullName ?? "" });
+            listView.Items.Add(new ListViewItem(".") { SubItems = { "", "" }});
+            listView.Items.Add(new ListViewItem("..") { SubItems = { "", "" }});
 
             // Add directories
             foreach (string dir in Directory.GetDirectories(path))
@@ -90,9 +90,10 @@ namespace FileExplorerApp
 
         private void RightListView_ItemActivate(object sender, EventArgs e)
         {
-            if (LeftListView.SelectedItems[0].Text == ".")
+            if (RightListView.SelectedItems[0].Text == ".")
             {
-                PopulateDrives(LeftListView);
+                PopulateDrives(RightListView);
+                rightTextBox.Text = "";
             }
 
             if (RightListView.SelectedItems.Count > 0)
@@ -117,6 +118,7 @@ namespace FileExplorerApp
             if (LeftListView.SelectedItems[0].Text == ".")
             {
                 PopulateDrives(LeftListView);
+                leftTextBox.Text = "";
             }
 
             if (LeftListView.SelectedItems.Count > 0)
@@ -171,7 +173,7 @@ namespace FileExplorerApp
 
         private void CopyBtn_Click(object sender, EventArgs e)
         {
-            if(lastAccessedListView == LeftListView)
+            if (lastAccessedListView == LeftListView)
             {
                 theOtherListView = RightListView;
                 theOtherPath = currentPathRight;
@@ -212,6 +214,25 @@ namespace FileExplorerApp
             foreach (string subDir in Directory.GetDirectories(sourceDir))
             {
                 DirectoryCopy(subDir, Path.Combine(destDir, Path.GetFileName(subDir)));
+            }
+        }
+
+        private void DeleteBtn_Click(object sender, EventArgs e)
+        {
+            if (lastAccessedListView.SelectedItems.Count > 0)
+            {
+                string selectedPath = lastAccessedListView.SelectedItems[0].Tag.ToString();
+
+                if (File.Exists(selectedPath))
+                {
+                    File.Delete(selectedPath);
+                }
+                else if (Directory.Exists(selectedPath))
+                {
+                    Directory.Delete(selectedPath, true);
+                }
+
+                PopulateFolderContents(lastAccessedListView, lastAccessedPath); 
             }
         }
     }

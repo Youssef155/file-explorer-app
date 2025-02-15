@@ -107,6 +107,7 @@
             DeleteBtn.TabIndex = 8;
             DeleteBtn.Text = "Delete";
             DeleteBtn.UseVisualStyleBackColor = true;
+            DeleteBtn.Click += DeleteBtn_Click;
             // 
             // RightListView
             // 
