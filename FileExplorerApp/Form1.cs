@@ -271,7 +271,7 @@ namespace FileExplorerApp
             listView.View = View.Details;
             listView.FullRowSelect = true;
             listView.GridLines = true;
-            listView.Columns.Add("Name", 300);
+            listView.Columns.Add("Name", 400);
             listView.Columns.Add("Type", 100);
             listView.Columns.Add("Size", 100);
         }

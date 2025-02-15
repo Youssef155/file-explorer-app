@@ -42,81 +42,106 @@
             // rightTextBox
             // 
             rightTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            rightTextBox.BackColor = Color.DimGray;
+            rightTextBox.BorderStyle = BorderStyle.FixedSingle;
+            rightTextBox.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            rightTextBox.ForeColor = Color.White;
             rightTextBox.Location = new Point(799, 29);
             rightTextBox.Name = "rightTextBox";
-            rightTextBox.Size = new Size(593, 27);
+            rightTextBox.Size = new Size(593, 30);
             rightTextBox.TabIndex = 0;
             // 
             // leftTextBox
             // 
+            leftTextBox.BackColor = Color.DimGray;
+            leftTextBox.BorderStyle = BorderStyle.FixedSingle;
+            leftTextBox.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            leftTextBox.ForeColor = Color.White;
             leftTextBox.Location = new Point(94, 29);
             leftTextBox.Name = "leftTextBox";
-            leftTextBox.Size = new Size(614, 27);
+            leftTextBox.Size = new Size(614, 30);
             leftTextBox.TabIndex = 1;
             // 
             // LeftArrowBtn
             // 
             LeftArrowBtn.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            LeftArrowBtn.BackColor = Color.FromArgb(163, 151, 12);
             LeftArrowBtn.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LeftArrowBtn.ForeColor = SystemColors.ButtonFace;
             LeftArrowBtn.Location = new Point(726, 281);
             LeftArrowBtn.Name = "LeftArrowBtn";
             LeftArrowBtn.Size = new Size(46, 48);
             LeftArrowBtn.TabIndex = 4;
             LeftArrowBtn.Text = "<<";
-            LeftArrowBtn.UseVisualStyleBackColor = true;
+            LeftArrowBtn.UseVisualStyleBackColor = false;
             LeftArrowBtn.Click += LeftArrowBtn_Click;
             // 
             // RightArrowBtn
             // 
             RightArrowBtn.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            RightArrowBtn.BackColor = Color.FromArgb(163, 151, 12);
             RightArrowBtn.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            RightArrowBtn.ForeColor = SystemColors.ButtonFace;
             RightArrowBtn.Location = new Point(730, 361);
             RightArrowBtn.Name = "RightArrowBtn";
             RightArrowBtn.Size = new Size(42, 48);
             RightArrowBtn.TabIndex = 5;
             RightArrowBtn.Text = ">>";
-            RightArrowBtn.UseVisualStyleBackColor = true;
+            RightArrowBtn.UseVisualStyleBackColor = false;
             RightArrowBtn.Click += RightArrowBtn_Click;
             // 
             // BackBtn
             // 
             BackBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            BackBtn.Location = new Point(1206, 574);
+            BackBtn.BackColor = Color.FromArgb(163, 151, 12);
+            BackBtn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            BackBtn.ForeColor = SystemColors.ButtonFace;
+            BackBtn.Location = new Point(1206, 558);
             BackBtn.Name = "BackBtn";
-            BackBtn.Size = new Size(94, 29);
+            BackBtn.Size = new Size(130, 45);
             BackBtn.TabIndex = 6;
             BackBtn.Text = "Back";
-            BackBtn.UseVisualStyleBackColor = true;
+            BackBtn.UseVisualStyleBackColor = false;
             BackBtn.Click += BackBtn_Click;
             // 
             // CopyBtn
             // 
             CopyBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            CopyBtn.Location = new Point(178, 574);
+            CopyBtn.BackColor = Color.FromArgb(163, 151, 12);
+            CopyBtn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            CopyBtn.ForeColor = SystemColors.ButtonFace;
+            CopyBtn.Location = new Point(178, 558);
             CopyBtn.Name = "CopyBtn";
-            CopyBtn.Size = new Size(94, 29);
+            CopyBtn.Size = new Size(130, 45);
             CopyBtn.TabIndex = 7;
             CopyBtn.Text = "Copy";
-            CopyBtn.UseVisualStyleBackColor = true;
+            CopyBtn.UseVisualStyleBackColor = false;
             CopyBtn.Click += CopyBtn_Click;
             // 
             // DeleteBtn
             // 
             DeleteBtn.Anchor = AnchorStyles.Bottom;
-            DeleteBtn.Location = new Point(705, 574);
+            DeleteBtn.BackColor = Color.FromArgb(163, 151, 12);
+            DeleteBtn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            DeleteBtn.ForeColor = SystemColors.ButtonFace;
+            DeleteBtn.Location = new Point(705, 558);
             DeleteBtn.Name = "DeleteBtn";
-            DeleteBtn.Size = new Size(94, 29);
+            DeleteBtn.Size = new Size(130, 45);
             DeleteBtn.TabIndex = 8;
             DeleteBtn.Text = "Delete";
-            DeleteBtn.UseVisualStyleBackColor = true;
+            DeleteBtn.UseVisualStyleBackColor = false;
             DeleteBtn.Click += DeleteBtn_Click;
             // 
             // RightListView
             // 
             RightListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            RightListView.BackColor = Color.DimGray;
+            RightListView.BorderStyle = BorderStyle.FixedSingle;
+            RightListView.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            RightListView.ForeColor = Color.White;
             RightListView.Location = new Point(799, 86);
             RightListView.Name = "RightListView";
-            RightListView.Size = new Size(593, 435);
+            RightListView.Size = new Size(593, 449);
             RightListView.TabIndex = 9;
             RightListView.UseCompatibleStateImageBehavior = false;
             RightListView.ItemActivate += listView_ItemActivate;
@@ -124,9 +149,13 @@
             // LeftListView
             // 
             LeftListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            LeftListView.BackColor = Color.DimGray;
+            LeftListView.BorderStyle = BorderStyle.FixedSingle;
+            LeftListView.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            LeftListView.ForeColor = Color.White;
             LeftListView.Location = new Point(94, 97);
             LeftListView.Name = "LeftListView";
-            LeftListView.Size = new Size(614, 435);
+            LeftListView.Size = new Size(614, 438);
             LeftListView.TabIndex = 10;
             LeftListView.UseCompatibleStateImageBehavior = false;
             LeftListView.ItemActivate += listView_ItemActivate;
@@ -135,6 +164,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(13, 0, 64);
             ClientSize = new Size(1489, 615);
             Controls.Add(LeftListView);
             Controls.Add(RightListView);
