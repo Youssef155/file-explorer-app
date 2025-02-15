@@ -7,9 +7,21 @@ namespace FileExplorerApp
         private string currentPathLeft = string.Empty;
         private string currentPathRight = string.Empty;
 
+        private string lastAccessedPath = string.Empty;
+        private ListView lastAccessedListView = null;
+        private TextBox lastAccessedTextBox = null;
+
+        private string theOtherPath = string.Empty;
+        private ListView theOtherListView = null;
+        private TextBox theOtherTextBox = null;
+
         public Form1()
         {
             InitializeComponent();
+
+            LeftListView.ItemActivate += listView_ItemActivate;
+            RightListView.ItemActivate += listView_ItemActivate;
+
         }
 
         // Configure the ListView
@@ -22,7 +34,6 @@ namespace FileExplorerApp
             listView.Columns.Add("Type", 100);
             listView.Columns.Add("Size", 100);
         }
-
 
         private void PopulateDrives(ListView listView)
         {
@@ -62,12 +73,11 @@ namespace FileExplorerApp
                 FileInfo fileInfo = new FileInfo(file);
                 ListViewItem item = new ListViewItem(Path.GetFileName(file));
                 item.SubItems.Add("File");
-                item.SubItems.Add(fileInfo.Length.ToString() + " bytes");
+                item.SubItems.Add((fileInfo.Length / (1024 * 1024)).ToString() + " MB");
                 item.Tag = file;
                 listView.Items.Add(item);
             }
         }
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -80,6 +90,11 @@ namespace FileExplorerApp
 
         private void RightListView_ItemActivate(object sender, EventArgs e)
         {
+            if (LeftListView.SelectedItems[0].Text == ".")
+            {
+                PopulateDrives(LeftListView);
+            }
+
             if (RightListView.SelectedItems.Count > 0)
             {
                 string selectedPath = Path.Combine(currentPathRight, RightListView.SelectedItems[0].Text);
@@ -99,6 +114,11 @@ namespace FileExplorerApp
 
         private void LeftListView_ItemActivate_1(object sender, EventArgs e)
         {
+            if (LeftListView.SelectedItems[0].Text == ".")
+            {
+                PopulateDrives(LeftListView);
+            }
+
             if (LeftListView.SelectedItems.Count > 0)
             {
                 string selectedPath = Path.Combine(currentPathLeft, LeftListView.SelectedItems[0].Text);
@@ -114,6 +134,84 @@ namespace FileExplorerApp
                 {
                     MessageBox.Show("This is a file and cannot be opened.");
                 }
+            }
+        }
+
+        private void listView_ItemActivate(object sender, EventArgs e)
+        {
+            ListView listView = sender as ListView;
+            if (listView == LeftListView)
+            {
+                lastAccessedPath = currentPathLeft;
+                lastAccessedListView = LeftListView;
+                lastAccessedTextBox = leftTextBox;
+            }
+            else if (listView == RightListView)
+            {
+                lastAccessedPath = currentPathRight;
+                lastAccessedListView = RightListView;
+                lastAccessedTextBox = rightTextBox;
+            }
+        }
+
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(currentPathLeft) && Directory.GetParent(currentPathLeft) != null)
+            {
+                if (!string.IsNullOrEmpty(lastAccessedPath) && Directory.GetParent(lastAccessedPath) != null)
+                {
+                    lastAccessedPath = Directory.GetParent(lastAccessedPath).FullName;
+
+                    PopulateFolderContents(lastAccessedListView, lastAccessedPath);
+
+                    lastAccessedTextBox.Text = lastAccessedPath;
+                }
+            }
+        }
+
+        private void CopyBtn_Click(object sender, EventArgs e)
+        {
+            if(lastAccessedListView == LeftListView)
+            {
+                theOtherListView = RightListView;
+                theOtherPath = currentPathRight;
+                theOtherTextBox = rightTextBox;
+            }
+            else
+            {
+                theOtherListView = LeftListView;
+                theOtherPath = currentPathLeft;
+                theOtherTextBox = leftTextBox;
+            }
+
+            if (lastAccessedListView.SelectedItems.Count > 0)
+            {
+                string sourcePath = lastAccessedListView.SelectedItems[0].Tag.ToString();
+                string destinationPath = Path.Combine(theOtherPath, Path.GetFileName(sourcePath));
+
+                if (File.Exists(sourcePath))
+                {
+                    File.Copy(sourcePath, destinationPath);
+                }
+                else if (Directory.Exists(sourcePath))
+                {
+                    DirectoryCopy(sourcePath, destinationPath);
+                }
+
+                PopulateFolderContents(theOtherListView, theOtherPath);
+            }
+        }
+
+        private void DirectoryCopy(string sourceDir, string destDir)
+        {
+            Directory.CreateDirectory(destDir);
+            foreach (string file in Directory.GetFiles(sourceDir))
+            {
+                File.Copy(file, Path.Combine(destDir, Path.GetFileName(file)));
+            }
+            foreach (string subDir in Directory.GetDirectories(sourceDir))
+            {
+                DirectoryCopy(subDir, Path.Combine(destDir, Path.GetFileName(subDir)));
             }
         }
     }

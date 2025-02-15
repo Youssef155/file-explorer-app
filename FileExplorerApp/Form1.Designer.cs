@@ -85,6 +85,7 @@
             BackBtn.TabIndex = 6;
             BackBtn.Text = "Back";
             BackBtn.UseVisualStyleBackColor = true;
+            BackBtn.Click += BackBtn_Click;
             // 
             // CopyBtn
             // 
@@ -95,6 +96,7 @@
             CopyBtn.TabIndex = 7;
             CopyBtn.Text = "Copy";
             CopyBtn.UseVisualStyleBackColor = true;
+            CopyBtn.Click += CopyBtn_Click;
             // 
             // DeleteBtn
             // 
