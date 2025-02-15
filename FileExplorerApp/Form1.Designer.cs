@@ -41,39 +41,45 @@
             // 
             // rightTextBox
             // 
-            rightTextBox.Location = new Point(624, 29);
+            rightTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            rightTextBox.Location = new Point(799, 29);
             rightTextBox.Name = "rightTextBox";
-            rightTextBox.Size = new Size(238, 27);
+            rightTextBox.Size = new Size(593, 27);
             rightTextBox.TabIndex = 0;
             // 
             // leftTextBox
             // 
-            leftTextBox.Location = new Point(75, 29);
+            leftTextBox.Location = new Point(94, 29);
             leftTextBox.Name = "leftTextBox";
-            leftTextBox.Size = new Size(238, 27);
+            leftTextBox.Size = new Size(614, 27);
             leftTextBox.TabIndex = 1;
             // 
             // LeftArrowBtn
             // 
-            LeftArrowBtn.Location = new Point(428, 182);
+            LeftArrowBtn.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            LeftArrowBtn.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LeftArrowBtn.Location = new Point(726, 281);
             LeftArrowBtn.Name = "LeftArrowBtn";
-            LeftArrowBtn.Size = new Size(76, 29);
+            LeftArrowBtn.Size = new Size(46, 48);
             LeftArrowBtn.TabIndex = 4;
             LeftArrowBtn.Text = "<<";
             LeftArrowBtn.UseVisualStyleBackColor = true;
             // 
             // RightArrowBtn
             // 
-            RightArrowBtn.Location = new Point(428, 232);
+            RightArrowBtn.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            RightArrowBtn.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            RightArrowBtn.Location = new Point(730, 361);
             RightArrowBtn.Name = "RightArrowBtn";
-            RightArrowBtn.Size = new Size(76, 29);
+            RightArrowBtn.Size = new Size(42, 48);
             RightArrowBtn.TabIndex = 5;
             RightArrowBtn.Text = ">>";
             RightArrowBtn.UseVisualStyleBackColor = true;
             // 
             // BackBtn
             // 
-            BackBtn.Location = new Point(709, 433);
+            BackBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            BackBtn.Location = new Point(1206, 574);
             BackBtn.Name = "BackBtn";
             BackBtn.Size = new Size(94, 29);
             BackBtn.TabIndex = 6;
@@ -82,7 +88,8 @@
             // 
             // CopyBtn
             // 
-            CopyBtn.Location = new Point(133, 433);
+            CopyBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            CopyBtn.Location = new Point(178, 574);
             CopyBtn.Name = "CopyBtn";
             CopyBtn.Size = new Size(94, 29);
             CopyBtn.TabIndex = 7;
@@ -91,7 +98,8 @@
             // 
             // DeleteBtn
             // 
-            DeleteBtn.Location = new Point(428, 433);
+            DeleteBtn.Anchor = AnchorStyles.Bottom;
+            DeleteBtn.Location = new Point(705, 574);
             DeleteBtn.Name = "DeleteBtn";
             DeleteBtn.Size = new Size(94, 29);
             DeleteBtn.TabIndex = 8;
@@ -100,18 +108,20 @@
             // 
             // RightListView
             // 
-            RightListView.Location = new Point(624, 86);
+            RightListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            RightListView.Location = new Point(799, 86);
             RightListView.Name = "RightListView";
-            RightListView.Size = new Size(238, 268);
+            RightListView.Size = new Size(593, 435);
             RightListView.TabIndex = 9;
             RightListView.UseCompatibleStateImageBehavior = false;
             RightListView.ItemActivate += RightListView_ItemActivate;
             // 
             // LeftListView
             // 
-            LeftListView.Location = new Point(75, 86);
+            LeftListView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            LeftListView.Location = new Point(94, 97);
             LeftListView.Name = "LeftListView";
-            LeftListView.Size = new Size(238, 268);
+            LeftListView.Size = new Size(614, 435);
             LeftListView.TabIndex = 10;
             LeftListView.UseCompatibleStateImageBehavior = false;
             LeftListView.ItemActivate += LeftListView_ItemActivate_1;
@@ -120,7 +130,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(943, 576);
+            ClientSize = new Size(1489, 615);
             Controls.Add(LeftListView);
             Controls.Add(RightListView);
             Controls.Add(DeleteBtn);
@@ -132,6 +142,7 @@
             Controls.Add(rightTextBox);
             Name = "Form1";
             Text = "Form1";
+            WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();

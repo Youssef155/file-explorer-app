@@ -12,13 +12,29 @@ namespace FileExplorerApp
             InitializeComponent();
         }
 
-        // Example for ListView
-        public void PopulateDrives(ListView listView)
+        // Configure the ListView
+        private void SetupListView(ListView listView)
+        {
+            listView.View = View.Details;
+            listView.FullRowSelect = true;
+            listView.GridLines = true;
+            listView.Columns.Add("Name", 300);
+            listView.Columns.Add("Type", 100);
+            listView.Columns.Add("Size", 100);
+        }
+
+
+        private void PopulateDrives(ListView listView)
         {
             listView.Items.Clear();
+
             foreach (DriveInfo drive in DriveInfo.GetDrives())
             {
-                listView.Items.Add(new ListViewItem(drive.Name));
+                ListViewItem item = new ListViewItem(drive.Name);
+                item.SubItems.Add("Drive");
+                item.SubItems.Add((drive.TotalSize / (1024 * 1024 * 1024)).ToString());
+                item.Tag = drive.Name;
+                listView.Items.Add(item);
             }
         }
 
@@ -27,25 +43,37 @@ namespace FileExplorerApp
             listView.Items.Clear();
 
             // Add "." and ".." for navigation
-            listView.Items.Add(new ListViewItem("."));
-            listView.Items.Add(new ListViewItem(".."));
+            listView.Items.Add(new ListViewItem(".") { SubItems = { "", "" }, Tag = path });
+            listView.Items.Add(new ListViewItem("..") { SubItems = { "", "" }, Tag = Directory.GetParent(path)?.FullName ?? "" });
 
             // Add directories
             foreach (string dir in Directory.GetDirectories(path))
             {
-                listView.Items.Add(new ListViewItem(Path.GetFileName(dir)));
+                ListViewItem item = new ListViewItem(Path.GetFileName(dir));
+                item.SubItems.Add("Folder");
+                item.SubItems.Add("");
+                item.Tag = dir;
+                listView.Items.Add(item);
             }
 
             // Add files
             foreach (string file in Directory.GetFiles(path))
             {
-                listView.Items.Add(new ListViewItem(Path.GetFileName(file)));
+                FileInfo fileInfo = new FileInfo(file);
+                ListViewItem item = new ListViewItem(Path.GetFileName(file));
+                item.SubItems.Add("File");
+                item.SubItems.Add(fileInfo.Length.ToString() + " bytes");
+                item.Tag = file;
+                listView.Items.Add(item);
             }
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            SetupListView(LeftListView);
+            SetupListView(RightListView);
+
             PopulateDrives(LeftListView);
             PopulateDrives(RightListView);
         }
