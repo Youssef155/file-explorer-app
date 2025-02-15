@@ -98,7 +98,13 @@ namespace FileExplorerApp
 
             if (RightListView.SelectedItems.Count > 0)
             {
-                string selectedPath = Path.Combine(currentPathRight, RightListView.SelectedItems[0].Text);
+                string selectedPath;
+                if (RightListView.SelectedItems[0].Text == "..")
+                    selectedPath = Directory.GetParent(currentPathRight).FullName;
+                else
+                    selectedPath = Path.Combine(currentPathRight, RightListView.SelectedItems[0].Text);
+
+                selectedPath = Path.Combine(currentPathRight, RightListView.SelectedItems[0].Text);
 
                 if (Directory.Exists(selectedPath))
                 {
@@ -123,7 +129,11 @@ namespace FileExplorerApp
 
             if (LeftListView.SelectedItems.Count > 0)
             {
-                string selectedPath = Path.Combine(currentPathLeft, LeftListView.SelectedItems[0].Text);
+                string selectedPath;
+                if (LeftListView.SelectedItems[0].Text == "..")
+                    selectedPath = Directory.GetParent(currentPathLeft).FullName;
+                else 
+                    selectedPath = Path.Combine(currentPathLeft, LeftListView.SelectedItems[0].Text);
 
                 if (Directory.Exists(selectedPath))
                 {
