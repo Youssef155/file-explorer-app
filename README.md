@@ -24,14 +24,6 @@ FileExplorerApp is a simple and intuitive file management application designed t
 
 ---
 
-## Screenshots
-
-(Add screenshots of your app here. For example:)
-![Home Screen](screenshots/home.png)
-![File Details](screenshots/details.png)
-
----
-
 ## Tech Stack
 
 The FileExplorerApp is built using the following technologies:
