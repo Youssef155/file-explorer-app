@@ -2,7 +2,10 @@
 
 FileExplorerApp is a simple and intuitive file management application designed to help users browse, organize, and manage files and directories on their device. It provides a dual-pane interface for easy file navigation and operations such as copying, moving, deleting, and renaming files and folders.
 
+https://github.com/user-attachments/assets/8422d232-d4a6-4207-ac8d-7e7945673cb8
+
 ---
+
 
 ## Features
 
